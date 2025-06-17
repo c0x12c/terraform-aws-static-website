@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.0]() (2025-06-17)
+
+### Changes
+
+* Replaced local S3 module source with public module from Terraform Registry.
+
 ## [0.6.7]() (2025-06-10)
 
 ### Features
