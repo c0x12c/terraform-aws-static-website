@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.1]() (2025-06-18)
+
+### Changes
+
+* Add variable `versioning_status`.
+
 ## [0.7.0]() (2025-06-17)
 
 ### Changes
