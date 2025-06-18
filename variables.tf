@@ -83,6 +83,17 @@ variable "cloudfront_distribution_aliases" {
   default     = null
 }
 
+variable "versioning_status" {
+  description = "Whether to enable versioning on S3 bucket."
+  type        = string
+  default     = "Disabled"
+
+  validation {
+    condition     = var.versioning_status == "Disabled" || var.versioning_status == "Enabled"
+    error_message = "Only `Disabled` or `Enabled` are valid."
+  }
+}
+
 # avoid recreating policies and their dependent resources during migration
 variable "s3_read_write_policy_description" {
   description = "Description for read write policy"
