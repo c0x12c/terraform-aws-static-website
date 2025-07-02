@@ -210,3 +210,10 @@ variable "s3_redirect_domain" {
   type        = string
   default     = null
 }
+
+# access logging
+variable "access_logs_bucket_arn" {
+  description = "The arn of bucket that stores access logs"
+  type        = string
+  default     = null
+}
