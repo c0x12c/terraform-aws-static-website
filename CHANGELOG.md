@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0]() (2025-07-02)
+
+### ⚠ BREAKING CHANGES
+
+* Fix bucket policy overwrites.
+
 ## [0.7.1]() (2025-06-18)
 
 ### Changes

@@ -6,7 +6,7 @@ data "aws_s3_bucket" "this" {
 
 module "s3" {
   source  = "c0x12c/s3/aws"
-  version = "0.4.0"
+  version = "1.1.0"
 
   count = var.enabled_create_s3 ? 1 : 0
 
@@ -14,7 +14,28 @@ module "s3" {
   force_destroy     = true
   versioning_status = var.versioning_status
 
-  create_bucket_policy      = false
+  # bucket policy
+  create_bucket_policy = true
+  custom_bucket_policy = {
+    sid       = "AllowCloudFrontServicePrincipal"
+    effect    = "Allow"
+    actions   = ["s3:GetObject"]
+    resources = ["${module.s3[0].s3_bucket_arn}/*"]
+
+    principals = {
+      type        = "Service"
+      identifiers = ["cloudfront.amazonaws.com"]
+    }
+
+    conditions = [{
+      test     = "StringEquals"
+      variable = "AWS:SourceArn"
+      values   = [module.cloudfront.cloudfront_distribution_arn]
+    }]
+  }
+  access_logs_bucket_arn = var.access_logs_bucket_arn
+
+  # permission
   enabled_read_only_policy  = var.enabled_read_only_policy
   enabled_read_write_policy = var.enabled_read_write_policy
 
