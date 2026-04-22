@@ -86,6 +86,15 @@ resource "aws_cloudfront_distribution" "this" {
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = local.s3_origin_id
 
+    dynamic "function_association" {
+      for_each = var.default_cache_behavior.function_association != null ? [1] : []
+
+      content {
+        event_type   = var.default_cache_behavior.function_association.event_type
+        function_arn = var.default_cache_behavior.function_association.function_arn
+      }
+    }
+
     forwarded_values {
       query_string = false
 
@@ -103,12 +112,22 @@ resource "aws_cloudfront_distribution" "this" {
 
   dynamic "ordered_cache_behavior" {
     for_each = var.ordered_cache_behaviors
+
     content {
       path_pattern               = ordered_cache_behavior.value.path_pattern
       allowed_methods            = ordered_cache_behavior.value.allowed_methods
       cached_methods             = ordered_cache_behavior.value.cached_methods
       target_origin_id           = ordered_cache_behavior.value.target_origin_id
       response_headers_policy_id = var.enabled_response_headers_policy ? aws_cloudfront_response_headers_policy.this[0].id : null
+
+      dynamic "function_association" {
+        for_each = ordered_cache_behavior.value.function_association != null ? [1] : []
+
+        content {
+          event_type   = ordered_cache_behavior.value.function_association.event_type
+          function_arn = ordered_cache_behavior.value.function_association.function_arn
+        }
+      }
 
       forwarded_values {
         query_string = ordered_cache_behavior.value.query_string
