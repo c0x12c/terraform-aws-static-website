@@ -74,7 +74,7 @@ variable "ordered_cache_behaviors" {
     max_ttl          = number
     compress         = bool
     function_association = optional(object({
-      event_type = string
+      event_type   = string
       function_arn = string
     }), null)
   }))

@@ -139,6 +139,10 @@ variable "ordered_cache_behaviors" {
     default_ttl      = number
     max_ttl          = number
     compress         = bool
+    function_association = optional(object({
+      event_type   = string
+      function_arn = string
+    }), null)
   }))
   default = []
 }
@@ -216,4 +220,15 @@ variable "access_logs_bucket_arn" {
   description = "The arn of bucket that stores access logs"
   type        = string
   default     = null
+}
+
+variable "default_cache_behavior" {
+  description = ""
+  type = object({
+    function_association = optional(object({
+      event_type   = string
+      function_arn = string
+    }), null)
+  })
+  default = {}
 }
