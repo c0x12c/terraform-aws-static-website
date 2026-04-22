@@ -157,5 +157,5 @@ variable "default_cache_behavior" {
       function_arn = string
     }), null)
   })
-  default = null
+  default = {}
 }
