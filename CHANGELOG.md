@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0]() (2026-04-22)
+
+### Features
+
+* Add `function_association` support to `default_cache_behavior` and `ordered_cache_behaviors` in the CloudFront module.
+
 ## [1.0.0]() (2025-07-02)
 
 ### ⚠ BREAKING CHANGES

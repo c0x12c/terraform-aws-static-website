@@ -73,6 +73,10 @@ variable "ordered_cache_behaviors" {
     default_ttl      = number
     max_ttl          = number
     compress         = bool
+    function_association = optional(object({
+      event_type = string
+      function_arn = string
+    }), null)
   }))
   default = []
 }
@@ -143,4 +147,15 @@ variable "s3_redirect_domain" {
   description = "If set, configures the S3 bucket as a static website redirect to this domain."
   type        = string
   default     = null
+}
+
+variable "default_cache_behavior" {
+  description = ""
+  type = object({
+    function_association = optional(object({
+      event_type   = string
+      function_arn = string
+    }), null)
+  })
+  default = {}
 }
