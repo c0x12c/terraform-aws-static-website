@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0]() (2026-04-22)
+
+### Fix
+
+* Add missing variables `default_cache_behavior` and `ordered_cache_behaviors`.
+
 ## [1.1.0]() (2026-04-22)
 
 ### Features
