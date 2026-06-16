@@ -6,7 +6,7 @@ data "aws_s3_bucket" "this" {
 
 module "s3" {
   source  = "c0x12c/s3/aws"
-  version = "1.1.0"
+  version = "1.2.0"
 
   count = var.enabled_create_s3 ? 1 : 0
 
